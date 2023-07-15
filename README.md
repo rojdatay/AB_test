@@ -1,4 +1,7 @@
-add ab_test.jpg
+
+
+![ab_test](https://github.com/rojdatay/AB_test/assets/132274684/2a149aaa-cff1-4f2b-b429-300f3a3445ac)
+
 # AB_test
 ##############################################################
 # AB Testing: Comparison of Facebook Bidding Methods
