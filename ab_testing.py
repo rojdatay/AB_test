@@ -117,10 +117,10 @@ shapiro_test(test_purchase, cont_purchase)
 def levene_test(a,b):
     test_stat, pvalue = levene(a,b)
     if pvalue < 0.05:
-        print("test Stat = %.4f, p-value = %.4f" % (test_stat, pvalue),
+        print("Test Stat = %.4f, p-value = %.4f" % (test_stat, pvalue),
               "HO is rejected, the homogeneity of variance is not satisfied")
     else:
-        print("test Stat = %.4f, p-value = %.4f" % (test_stat, pvalue),
+        print("Test Stat = %.4f, p-value = %.4f" % (test_stat, pvalue),
               "HO is not rejected, the homogeneity of variance is satisfied")
 
 levene_test(test_purchase, cont_purchase)
@@ -172,25 +172,26 @@ def ab_test(a,b):
     if pvalue < 0.05:
         print("Levene Test Stat")
         levene_test(a,b)
-        print("When both assumptions are met, an 'Two-Sample Independent t-Test' is conducted")
-        return ttest_ind_test(a,b)
-    else pvalue > 0.05:
+        print("When just one assumptions are not met, use the non parametric test mannwhitneyu")
+        return mannwhitneyu_test(a,b)
+    else:
         print("Levene Test Stat")
         levene_test(a, b)
             if pvalue < 0.05:
+                print("When both assumptions are not met, use the non parametric test mannwhitneyu")
+                return mannwhitneyu_test(a, b)
+            else:
                 print("When just one assumptions are not met, an 'Two-Sample Independent t-Test' is conducted")
                 return ttest_ind_test(a, b)
-            else:
-                print("When both assumptions are not met, use the non parametric test mannwhitneyu")
-                return mannwhitneyu_test(a,b)
 
 
-ab_test(test_purchase, cont_purchase)
+ab_test(cont_purchase, test_purchase)
 
 #Shapiro Test Stat
-#Test Stat = 0.9589, p-value = 0.1541 HO is not rejected, the assumption of normal distribution is satisfied
 #Test Stat = 0.9773, p-value = 0.5891 HO is not rejected, the assumption of normal distribution is satisfied
+#Test Stat = 0.9589, p-value = 0.1541 HO is not rejected, the assumption of normal distribution is satisfied
 #Levene Test Stat
-#test Stat = 2.6393, p-value = 0.1083 HO is not rejected, the homogeneity of variance is satisfied
-#When both assumptions are not met, use the non parametric test mannwhitneyu
-#Test Stat = 877.0000, p-value = 0.4617 HO is not rejected, there is not a statistically significant difference between the groups
+#Test Stat = 2.6393, p-value = 0.1083 HO is not rejected, the homogeneity of variance is satisfied
+#When just one assumptions are not met, an 'Two-Sample Independent t-Test' is conducted
+#Test Stat = -0.9416, p-value = 0.3493 HO is not rejected, there is not a statistically significant difference between the groups
+
