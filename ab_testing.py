@@ -145,3 +145,52 @@ def ttest_ind_test(a,b):
 ttest_ind_test(test_purchase,cont_purchase)
 #Test Stat = 0.9416, p-value = 0.3493 HO is not rejected,
 # #there is not a statistically significant difference between the groups
+
+
+#####################################################
+# Defining of the Whole Process
+#####################################################
+
+# Defining mannwhitneyu Test
+##############################################
+def mannwhitneyu_test(a,b):
+    test_stat, pvalue = mannwhitneyu(a, b)
+    if pvalue < 0.05:
+        print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue),
+              "HO is rejected, there is a statistically significant difference between the groups")
+    else:
+        print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue),
+              "HO is not rejected, there is not a statistically significant difference between the groups")
+
+
+# Defining AB Test
+##############################################
+
+def ab_test(a,b):
+    print("Shapiro Test Stat")
+    shapiro_test(a,b)
+    if pvalue < 0.05:
+        print("Levene Test Stat")
+        levene_test(a,b)
+        print("When both assumptions are met, an 'Two-Sample Independent t-Test' is conducted")
+        return ttest_ind_test(a,b)
+    else pvalue > 0.05:
+        print("Levene Test Stat")
+        levene_test(a, b)
+            if pvalue < 0.05:
+                print("When just one assumptions are not met, an 'Two-Sample Independent t-Test' is conducted")
+                return ttest_ind_test(a, b)
+            else:
+                print("When both assumptions are not met, use the non parametric test mannwhitneyu")
+                return mannwhitneyu_test(a,b)
+
+
+ab_test(test_purchase, cont_purchase)
+
+#Shapiro Test Stat
+#Test Stat = 0.9589, p-value = 0.1541 HO is not rejected, the assumption of normal distribution is satisfied
+#Test Stat = 0.9773, p-value = 0.5891 HO is not rejected, the assumption of normal distribution is satisfied
+#Levene Test Stat
+#test Stat = 2.6393, p-value = 0.1083 HO is not rejected, the homogeneity of variance is satisfied
+#When both assumptions are not met, use the non parametric test mannwhitneyu
+#Test Stat = 877.0000, p-value = 0.4617 HO is not rejected, there is not a statistically significant difference between the groups
