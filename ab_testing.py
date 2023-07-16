@@ -181,7 +181,7 @@ def ab_test(a,b):
                 print("When both assumptions are not met, use the non parametric test mannwhitneyu")
                 return mannwhitneyu_test(a, b)
             else:
-                print("When just one assumptions are not met, an 'Two-Sample Independent t-Test' is conducted")
+                print("When both assumptions are met, an 'Two-Sample Independent t-Test' is conducted")
                 return ttest_ind_test(a, b)
 
 
@@ -192,6 +192,6 @@ ab_test(cont_purchase, test_purchase)
 #Test Stat = 0.9589, p-value = 0.1541 HO is not rejected, the assumption of normal distribution is satisfied
 #Levene Test Stat
 #Test Stat = 2.6393, p-value = 0.1083 HO is not rejected, the homogeneity of variance is satisfied
-#When just one assumptions are not met, an 'Two-Sample Independent t-Test' is conducted
+#When both assumptions are met, an 'Two-Sample Independent t-Test' is conducted
 #Test Stat = -0.9416, p-value = 0.3493 HO is not rejected, there is not a statistically significant difference between the groups
 
