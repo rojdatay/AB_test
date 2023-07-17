@@ -7,7 +7,7 @@
 # target audience through an auction-based system.
 
 ##############################################################
-## 1. Business Problem
+## Business Problem
 ##############################################################
 
 # Facebook introduced a new bidding type called "average bidding" as an alternative to the existing "maximum bidding"
@@ -21,7 +21,7 @@
 # Earning: Revenue generated from the purchases
 
 ###############################################################
-# 2. Data Preparation
+# Data Preparation
 ###############################################################
 
 ## Importing libraries
